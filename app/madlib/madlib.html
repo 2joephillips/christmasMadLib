@@ -1,0 +1,27 @@
+<div lass="slide-animate" ng-hide="vm.selection !== ''" ng-show="vm.selection === ''">
+    <div class="jumbotron">
+        <h1>Ready for some Fun!!!</h1>
+        <p class="lead">Pick one of the three stories. Fill out the parts, and enjoy the funny story!</p>
+        <div class="btn-group text-center" role="group" aria-label="...">
+            <button type="button" class="btn btn-danger" ng-click="vm.selection = 0">Rudolph</button>
+            <button type="button" class="btn btn-success" ng-click="vm.selection = 1">Jingle Bells</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.selection = 2">Christmas Tree</button>
+        </div>
+    </div>
+</div>
+<div ng-show="vm.selection !== '' && !vm.madlib">
+    <h1>Fill out the below info..</h1>
+    <ng-form name="madlibInput" novalidate>
+        <div class="slide-animate" ng-include="vm.storyInput[vm.selection]"></div>
+    </ng-form>
+</div>
+<button type="button" class="btn btn-danger" 
+    ng-show="vm.selection !== '' && !vm.madlib" 
+    ng-disabled="madlibInput.$invalid"
+    ng-click="vm.create();">Show Me My MAD LIB!</button>
+
+<div class="text-center">
+     <p ng-bind-html="vm.story"></p>
+</div>
+
+<button type="button" class="btn btn-success" ng-show="vm.selection !== ''" ng-click="vm.reset();">Reset!</button>
